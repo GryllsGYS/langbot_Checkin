@@ -222,11 +222,15 @@ class MyPlugin(BasePlugin):
                                  "checkin_count": checkin_count}
                 updated_leaderboard.append(updated_entry)
 
-            # 构造排行榜消息
-            text = "本群的撸管排行榜：\n"
-            for i, entry in enumerate(updated_leaderboard):
-                text += f"第{i+1}名 {entry['user_id']
-                                   } {entry['checkin_count']}次\n"
-            text += f"{updated_leaderboard[0]['user_id']}是本群的撸管大王"
+            if updated_leaderboard:
+                # 构造排行榜消息
+                text = "本群本月的撸管排行榜：\n"
+                for i, entry in enumerate(updated_leaderboard):
+                    text += f"第{i+1}名 {entry['user_id']
+                                       } {entry['checkin_count']}次\n"
+                text += f"{updated_leaderboard[0]['user_id']}是本群的撸管大王"
+
+            else:
+                text = "这个月还没有人撸过管哦"
             # 发送消息
             await ctx.send_message("group", ctx.event.launcher_id, [Plain(text)])
