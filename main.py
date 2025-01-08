@@ -228,6 +228,5 @@ class MyPlugin(BasePlugin):
                 text += f"第{i+1}名 {entry['user_id']
                                    } {entry['checkin_count']}次\n"
             text += f"{updated_leaderboard[0]['user_id']}是本群的撸管大王"
-            print(text)
             # 发送消息
             await ctx.send_message("group", ctx.event.launcher_id, [Plain(text)])
