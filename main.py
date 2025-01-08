@@ -204,7 +204,7 @@ class MyPlugin(BasePlugin):
                 img_path = graph(ctx.event.sender_id, ctx.event.launcher_id)
                 await ctx.send_message("group", ctx.event.launcher_id, [Image(path=img_path)])
                 os.remove(img_path)
-                await ctx.send_message("group", ctx.event.launcher_id, [Plain("成功撸了")])
+                await ctx.send_message("group", ctx.event.launcher_id, [At(ctx.event.sender_id)+Plain("成功撸了")])
 
         if msg == "撸榜":
             leaderboard = get_leaderboard(ctx.event.launcher_id)
