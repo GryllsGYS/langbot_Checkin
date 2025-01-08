@@ -195,8 +195,9 @@ class MyPlugin(BasePlugin):
         pass
 
     @handler(GroupMessageReceived)
-    async def group_normal_message_received(self, ctx: EventContext):
-        msg: str = ctx.event.message_chain
+    async def group_normal_received(self, ctx: EventContext):
+        msg = ctx.event.message_chain
+        msg = str(msg)
         if msg == "撸":
             clear_old_checkins()
             if checkin(ctx.event.sender_id, ctx.event.launcher_id):
