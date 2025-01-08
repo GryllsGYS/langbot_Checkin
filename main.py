@@ -198,7 +198,6 @@ class MyPlugin(BasePlugin):
     async def group_normal_message_received(self, ctx: EventContext):
         msg: str = ctx.event.message_chain
         if msg == "撸":
-            ctx.prevent_default()
             clear_old_checkins()
             if checkin(ctx.event.sender_id, ctx.event.launcher_id):
                 img_path = graph(ctx.event.sender_id, ctx.event.launcher_id)
@@ -207,7 +206,6 @@ class MyPlugin(BasePlugin):
                 await ctx.send_message("group", ctx.event.launcher_id, [Plain("成功撸了")])
 
         if msg == "撸榜":
-            ctx.prevent_default()
             leaderboard = get_leaderboard(ctx.event.launcher_id)
             updated_leaderboard = []
 
