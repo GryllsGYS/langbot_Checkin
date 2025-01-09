@@ -223,11 +223,19 @@ class MyPlugin(BasePlugin):
                 updated_leaderboard.append(updated_entry)
 
             if updated_leaderboard:
-                # 构造排行榜消息
                 text = "本群本月的撸管排行榜：\n"
-                for i, entry in enumerate(updated_leaderboard):
-                    text += f"第{i+1}名 {entry['user_id']
-                                       } {entry['checkin_count']}次\n"
+                for i, entry in enumerate(updated_leaderboard[:10]):
+                    rank = i + 1
+                    if rank == 1:
+                        prefix = "🥇"
+                    elif rank == 2:
+                        prefix = "🥈"
+                    elif rank == 3:
+                        prefix = "🥉"
+                    else:
+                        prefix = f"第{rank}名"
+                    text += f"{prefix} {entry['user_id']
+                                        } {entry['checkin_count']}次\n"
                 text += f"{updated_leaderboard[0]['user_id']}是本群的撸管大王"
 
             else:
